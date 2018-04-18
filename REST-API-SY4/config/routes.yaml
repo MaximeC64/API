@@ -1,0 +1,12 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+listUtilisateurs:
+    path: /utilisateurs
+    controller: App\Controller\UtilisateurController::list
+login:
+    path: /login/{mail}/{mdp}
+    controller: App\Controller\UtilisateurController::login
+addClient:
+    path: /client
+    controller: App\Controller\ClientController::add

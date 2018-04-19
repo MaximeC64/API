@@ -931,216 +931,217 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="226" name="Nom_Client">
+    <column id="235" parent="226" name="Titre_Client">
       <Position>2</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="236" parent="226" name="Prenom_Client">
+    <column id="236" parent="226" name="Nom_Client">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="237" parent="226" name="Adresse_Client">
+    <column id="237" parent="226" name="Prenom_Client">
       <Position>4</Position>
-      <DataType>varchar(250)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="238" parent="226" name="Cp_Client">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="239" parent="226" name="Ville_Client">
-      <Position>6</Position>
-      <DataType>varchar(25)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="240" parent="226" name="Telephone_Client">
-      <Position>7</Position>
-      <DataType>varchar(11)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="241" parent="226" name="Mail_Client">
-      <Position>8</Position>
       <DataType>varchar(50)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="226" name="Rs_Client">
+    <column id="238" parent="226" name="Adresse_Client">
+      <Position>5</Position>
+      <DataType>varchar(250)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="239" parent="226" name="Cp_Client">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="240" parent="226" name="Ville_Client">
+      <Position>7</Position>
+      <DataType>varchar(25)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="241" parent="226" name="Telephone_Client">
+      <Position>8</Position>
+      <DataType>varchar(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="242" parent="226" name="Mail_Client">
       <Position>9</Position>
+      <DataType>varchar(50)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="243" parent="226" name="Rs_Client">
+      <Position>10</Position>
       <DataType>varchar(150)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="243" parent="226" name="PRIMARY">
+    <key id="244" parent="226" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Id_Client</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="244" parent="227" name="Id_Depense">
+    <column id="245" parent="227" name="Id_Depense">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="227" name="DatePaiement_Depense">
+    <column id="246" parent="227" name="DatePaiement_Depense">
       <Position>2</Position>
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="227" name="Libelle_Depense">
+    <column id="247" parent="227" name="Libelle_Depense">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="227" name="Commentaire_Depense">
+    <column id="248" parent="227" name="Commentaire_Depense">
       <Position>4</Position>
       <DataType>varchar(150)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="227" name="MontantRemboursement_Depense">
+    <column id="249" parent="227" name="MontantRemboursement_Depense">
       <Position>5</Position>
       <DataType>float|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="227" name="Id_Notefrais">
+    <column id="250" parent="227" name="Id_Notefrais">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="250" parent="227" name="FK_Depense_Id_Notefrais">
+    <index id="251" parent="227" name="FK_Depense_Id_Notefrais">
       <ColNames>Id_Notefrais</ColNames>
     </index>
-    <key id="251" parent="227" name="PRIMARY">
+    <key id="252" parent="227" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Id_Depense
 Id_Notefrais</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="252" parent="227" name="FK_Depense_Id_Notefrais">
+    <foreign-key id="253" parent="227" name="FK_Depense_Id_Notefrais">
       <ColNames>Id_Notefrais</ColNames>
       <RefSchemaName>expense_gr</RefSchemaName>
       <RefTableName>Notefrais</RefTableName>
       <RefColNames>Id_Notefrais</RefColNames>
     </foreign-key>
-    <column id="253" parent="228" name="Date_Frais">
+    <column id="254" parent="228" name="Date_Frais">
       <Position>1</Position>
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="228" name="Id_Depense">
+    <column id="255" parent="228" name="Id_Depense">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="228" name="Id_Notefrais">
+    <column id="256" parent="228" name="Id_Notefrais">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="256" parent="228" name="FK_Frais_Id_Notefrais">
+    <index id="257" parent="228" name="FK_Frais_Id_Notefrais">
       <ColNames>Id_Notefrais</ColNames>
     </index>
-    <key id="257" parent="228" name="PRIMARY">
+    <key id="258" parent="228" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Id_Depense
 Id_Notefrais</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="258" parent="228" name="FK_Frais_Id_Depense">
+    <foreign-key id="259" parent="228" name="FK_Frais_Id_Depense">
       <ColNames>Id_Depense</ColNames>
       <RefSchemaName>expense_gr</RefSchemaName>
       <RefTableName>Depense</RefTableName>
       <RefColNames>Id_Depense</RefColNames>
     </foreign-key>
-    <foreign-key id="259" parent="228" name="FK_Frais_Id_Notefrais">
+    <foreign-key id="260" parent="228" name="FK_Frais_Id_Notefrais">
       <ColNames>Id_Notefrais</ColNames>
       <RefSchemaName>expense_gr</RefSchemaName>
       <RefTableName>Notefrais</RefTableName>
       <RefColNames>Id_Notefrais</RefColNames>
     </foreign-key>
-    <column id="260" parent="229" name="Id_Justificatif">
+    <column id="261" parent="229" name="Id_Justificatif">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="229" name="Titre_Justificatif">
+    <column id="262" parent="229" name="Titre_Justificatif">
       <Position>2</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="229" name="Url_Justificatif">
+    <column id="263" parent="229" name="Url_Justificatif">
       <Position>3</Position>
       <DataType>varchar(250)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="229" name="Id_Depense">
+    <column id="264" parent="229" name="Id_Depense">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="229" name="Id_Notefrais">
+    <column id="265" parent="229" name="Id_Notefrais">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="265" parent="229" name="FK_Justificatif_Id_Depense">
+    <index id="266" parent="229" name="FK_Justificatif_Id_Depense">
       <ColNames>Id_Depense</ColNames>
     </index>
-    <index id="266" parent="229" name="FK_Justificatif_Id_Notefrais">
+    <index id="267" parent="229" name="FK_Justificatif_Id_Notefrais">
       <ColNames>Id_Notefrais</ColNames>
     </index>
-    <key id="267" parent="229" name="PRIMARY">
+    <key id="268" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Id_Justificatif</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="268" parent="229" name="FK_Justificatif_Id_Depense">
+    <foreign-key id="269" parent="229" name="FK_Justificatif_Id_Depense">
       <ColNames>Id_Depense</ColNames>
       <RefSchemaName>expense_gr</RefSchemaName>
       <RefTableName>Depense</RefTableName>
       <RefColNames>Id_Depense</RefColNames>
     </foreign-key>
-    <foreign-key id="269" parent="229" name="FK_Justificatif_Id_Notefrais">
+    <foreign-key id="270" parent="229" name="FK_Justificatif_Id_Notefrais">
       <ColNames>Id_Notefrais</ColNames>
       <RefSchemaName>expense_gr</RefSchemaName>
       <RefTableName>Notefrais</RefTableName>
       <RefColNames>Id_Notefrais</RefColNames>
     </foreign-key>
-    <column id="270" parent="230" name="Id_Notefrais">
+    <column id="271" parent="230" name="Id_Notefrais">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="230" name="Date_Notefrais">
+    <column id="272" parent="230" name="Date_Notefrais">
       <Position>2</Position>
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="230" name="DateSoumission_Notefrais">
+    <column id="273" parent="230" name="DateSoumission_Notefrais">
       <Position>3</Position>
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="230" name="Commentaire_Notefrais">
-      <Position>4</Position>
-      <DataType>varchar(50)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
     <column id="274" parent="230" name="Id_Utilisateur">
-      <Position>5</Position>
+      <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="275" parent="230" name="Id_Client">
-      <Position>6</Position>
+      <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>

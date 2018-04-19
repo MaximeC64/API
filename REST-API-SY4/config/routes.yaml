@@ -1,12 +1,48 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index
-listUtilisateurs:
-    path: /utilisateurs
-    controller: App\Controller\UtilisateurController::list
+
 login:
-    path: /login/{mail}/{mdp}
+    path: /login
     controller: App\Controller\UtilisateurController::login
+    methods: [POST]
+listUtilisateurs:
+    path: /utilisateur
+    controller: App\Controller\UtilisateurController::list
+    methods: [GET]
+
+listClient:
+    path: /client
+    controller: App\Controller\ClientController::list
+    methods: [GET]
 addClient:
     path: /client
     controller: App\Controller\ClientController::add
+    methods: [POST]
+
+listNotefrais:
+    path: /utilisateur/{id}/notefrais
+    controller: App\Controller\NotefraisController::list
+    methods: [GET]
+addNotefrais:
+    path: /utilisateur/{id}/notefrais
+    controller: App\Controller\NotefraisController::add
+    methods: [POST]
+
+listDepense:
+    path: /notefrais/{idN}/depense
+    controller: App\Controller\DepenseController::list
+    methods: [GET]
+addDepense:
+    path: /notefrais/{idN}/depense
+    controller: App\Controller\DepenseController::add
+    methods: [POST]
+
+catchJustificatif:
+    path: /notefrais/{idN}/depense/{idD}/justificatif
+    controller: App\Controller\JustificatifController::catch
+    methods: [GET]
+addJustificatif:
+    path: /notefrais/{idN}/depense/{idD}/justificatif
+    controller: App\Controller\JustificatifController::add
+    methods: [POST]

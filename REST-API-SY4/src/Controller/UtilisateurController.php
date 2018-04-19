@@ -9,42 +9,21 @@
 namespace App\Controller;
 
 
-use App\Entity\Utilisateur;
-use PDO;
+use App\Entity\Manager\UtilisateurManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UtilisateurController extends Controller
 {
-    public function list(Request $request){
-//        $db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
-        $db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
-        $sql = "SELECT * FROM Utilisateur";
-        $return = $db->query($sql);
-        $result = $return->fetchAll();
-        $users = [];
-        foreach($result as $value){
-            $myObj = new Utilisateur($value);
-            $users[] = $myObj;
-        }
-        $myJSON = json_encode($users);
+    public function login(Request $request){
+        $utilisateurManager = new UtilisateurManager('dev');
+        $myJSON = $utilisateurManager->login($_POST['mail'], $_POST['mdp']);
         return new Response($myJSON);
     }
-    public function login(Request $request, $mail, $mdp){
-        //        $db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
-        $db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
-        $sql = "SELECT * FROM Utilisateur WHERE Mail_Utilisateur = :login AND Mdp_Utilisateur = :password";
-        $req = $db->prepare($sql);
-        $values = [
-            'login' => $mail,
-            'password' => $mdp
-        ];
-        $req->execute($values);
-        $result = $req->fetch();
-        var_dump($result);
-        $myObj = new Utilisateur($result);
-        $myJSON = json_encode($myObj);
-        return new Response($myJSON);
+    public function list(Request $request){
+        $utilisateurManager = new UtilisateurManager('dev');
+        $listUtilisateurJSON = $utilisateurManager->listUtilisateur();
+        return new Response($listUtilisateurJSON);
     }
 }

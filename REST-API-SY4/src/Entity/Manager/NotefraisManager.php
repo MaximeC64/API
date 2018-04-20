@@ -44,8 +44,9 @@ class NotefraisManager
         $req->bindValue(':DateSoumNote', $notefrais->getDateSoumission_Notefrais(), PDO::PARAM_STR);
         $req->bindValue(':idUtil', $id, PDO::PARAM_INT);
         $req->bindValue(':idCli', $notefrais->getId_Client(), PDO::PARAM_INT);
-        $res = $req->execute();
-        return json_encode($res);
+        $req->execute();
+        $idNotefrais = $this->db->lastInsertId();
+        return json_encode($idNotefrais);
     }
 
 }

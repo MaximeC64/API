@@ -15,11 +15,11 @@ class TrajetManager
     private $db;
     public function __construct($mode = 'prod') {
         if($mode == 'dev'){ // permet de choisir si l'on veut inclure ou pas la gestion des erreurs
-            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-//        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+//            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         } else {
-            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
-//        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
+//            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
         }
     }
 
@@ -33,7 +33,15 @@ class TrajetManager
 //        }
 //        return json_encode($listTrajet);
 //    }
-
+    public function catchTrajet($id){
+        $sql = 'SELECT * FROM Depense, Trajet WHERE Depense.Id_Depense = :id AND Depense.Id_Depense = Trajet.Id_Depense';
+        $req = $this->db->prepare($sql);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $result = $req->fetch();
+        $newTrajet= new Trajet($result);
+        return json_encode($newTrajet);
+    }
 
     public function addTrajet (Trajet $trajet, $idN){
         $sql = 'INSERT INTO Depense (DatePaiement_Depense, Libelle_Depense, Commentaire_Depense, MontantRemboursement_Depense, Id_Notefrais) VALUES ( :datePaie, :lib, :com, :mont, :idN)';

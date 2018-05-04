@@ -16,11 +16,11 @@ class DepenseManager
     private $db;
     public function __construct($mode = 'prod') {
         if($mode == 'dev'){ // permet de choisir si l'on veut inclure ou pas la gestion des erreurs
-            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-//        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+//            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         } else {
-            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
-//        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
+//            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
         }
     }
     public function listDepense($id){
@@ -28,6 +28,18 @@ class DepenseManager
         $sql = 'SELECT * FROM Depense WHERE Id_Notefrais = :id';
         $req = $this->db->prepare($sql);
         $req->bindValue(':id',$id, PDO::PARAM_INT);
+        $req->execute();
+        while ($ligne = $req->fetch()){
+            $depense = new Depense($ligne);
+            $listDepense[] = $depense;
+        }
+        return json_encode($listDepense);
+    }
+    public function listAllDepense($idU){
+        $listDepense = [];
+        $sql = 'SELECT Id_Depense, DatePaiement_Depense, Libelle_Depense, Commentaire_Depense, MontantRemboursement_Depense, Depense.Id_Notefrais FROM Notefrais, Depense WHERE Id_Utilisateur = :id AND Notefrais.Id_Notefrais = Depense.Id_Notefrais';
+        $req = $this->db->prepare($sql);
+        $req->bindValue(':id',$idU, PDO::PARAM_INT);
         $req->execute();
         while ($ligne = $req->fetch()){
             $depense = new Depense($ligne);

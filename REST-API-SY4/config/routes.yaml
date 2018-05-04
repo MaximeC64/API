@@ -29,6 +29,10 @@ addNotefrais:
     controller: App\Controller\NotefraisController::add
     methods: [POST]
 
+listAllDepense:
+    path: /utilisateur/{idU}/depense
+    controller: App\Controller\DepenseController::listAll
+    methods: [GET]
 listDepense:
     path: /notefrais/{idN}/depense
     controller: App\Controller\DepenseController::list
@@ -37,6 +41,14 @@ addDepense:
     path: /notefrais/{idN}/depense
     controller: App\Controller\DepenseController::add
     methods: [POST]
+catchFrais:
+    path: /depense/{idD}/frais
+    controller: App\Controller\DepenseController::catchFrais
+    methods: [GET]
+catchTrajet:
+    path: /depense/{idD}/trajet
+    controller: App\Controller\DepenseController::catchTrajet
+    methods: [GET]
 
 catchJustificatif:
     path: /notefrais/{idN}/depense/{idD}/justificatif

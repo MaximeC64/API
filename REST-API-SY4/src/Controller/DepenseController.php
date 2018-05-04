@@ -24,6 +24,21 @@ class DepenseController extends Controller
         $listDepenseJSON = $depenseManager->listDepense($idN);
         return new Response($listDepenseJSON);
     }
+    public function listAll(Request $request, $idU){
+        $depenseManager = new DepenseManager('dev');
+        $listDepenseJSON = $depenseManager->listAllDepense($idU);
+        return new Response($listDepenseJSON);
+    }
+    public function catchFrais(Request $request, $idD){
+        $fraisManager = new FraisManager('dev');
+        $fraisJSON = $fraisManager->catchFrais($idD);
+        return new Response($fraisJSON);
+    }
+    public function catchTrajet(Request $request, $idD){
+        $trajetManager = new TrajetManager('dev');
+        $trajetJSON = $trajetManager->catchTrajet($idD);
+        return new Response($trajetJSON);
+    }
     public function add(Request $request, $idN){
         if ($_POST['type'] === "trajet"){
             $trajetManager = new TrajetManager('dev');

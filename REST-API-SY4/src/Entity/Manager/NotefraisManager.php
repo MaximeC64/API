@@ -73,11 +73,17 @@ class NotefraisManager
         return json_encode($idNotefrais);
     }
     public function catchInfoValidation($idN){
-        $sql = 'SELECT COUNT(Depense.Id_Depense) as TOTAL_DEPENSE, COUNT(Valider.Id_Depense) as TOTAL_DEPENSE_VALIDER FROM Depense, Valider, Notefrais WHERE Notefrais.Id_Notefrais = :idN AND Notefrais.Id_Notefrais = Depense.Id_Depense AND Notefrais.Id_Notefrais = Valider.Id_Notefrais';
+        $sql = 'SELECT COUNT(Id_Depense) as TOTAL_DEPENSE FROM Depense WHERE Id_Notefrais = :idN';
         $req = $this->db->prepare($sql);
         $req->bindValue(':idN', $idN, PDO::PARAM_INT);
         $req->execute();
-        $result = $req->fetch();
+        $TOTAL_DEPENSE = $req->fetch();
+        $sql = 'SELECT COUNT(Id_Depense) as TOTAL_DEPENSE_VALIDER FROM Valider WHERE Id_Notefrais = :idN';
+        $req = $this->db->prepare($sql);
+        $req->bindValue(':idN', $idN, PDO::PARAM_INT);
+        $req->execute();
+        $TOTAL_DEPENSE_VALIDER = $req->fetch();
+        $result = [$TOTAL_DEPENSE,$TOTAL_DEPENSE_VALIDER];
         return json_encode($result);
     }
 

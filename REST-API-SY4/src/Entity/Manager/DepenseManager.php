@@ -47,6 +47,14 @@ class DepenseManager
         }
         return json_encode($listDepense);
     }
+    public function catchValidationState($idD){
+        $sql = 'SELECT Etat_Validation FROM Valider WHERE Id_Depense = :idD';
+        $req = $this->db->prepare($sql);
+        $req->bindValue(':idD',$idD, PDO::PARAM_INT);
+        $req->execute();
+        $result = $req->fetch();
+        return json_encode($result);
+    }
 
 //    public function readOnedepense($Id_Depense){
 //        $sql = 'SELECT * FROM depense WHERE depense.Id_Depense = :$Id_Depense';

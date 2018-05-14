@@ -36,6 +36,10 @@ addNotefrais:
     path: /utilisateur/{id}/notefrais
     controller: App\Controller\NotefraisController::add
     methods: [POST]
+validationNotefrais:
+    path: /notefrais/{idN}/validation
+    controller: App\Controller\NotefraisController::validation
+    methods: [GET]
 
 listAllDepense:
     path: /utilisateur/{idU}/depense
@@ -56,6 +60,10 @@ catchFrais:
 catchTrajet:
     path: /depense/{idD}/trajet
     controller: App\Controller\DepenseController::catchTrajet
+    methods: [GET]
+validationStateDepense:
+    path: /depense/{idD}/validation
+    controller: App\Controller\DepenseController::validationState
     methods: [GET]
 
 catchJustificatif:

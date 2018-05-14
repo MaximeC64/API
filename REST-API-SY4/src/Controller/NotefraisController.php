@@ -37,4 +37,9 @@ class NotefraisController extends Controller
         $json = $notefraisManager->addNotefrais($notefrais, $id);
         return new Response($json);
     }
+    public function validation(Request $request, $idN){
+        $notefraisManager = new NotefraisManager('dev');
+        $validateJSON = $notefraisManager->catchInfoValidation($idN);
+        return new Response($validateJSON);
+    }
 }

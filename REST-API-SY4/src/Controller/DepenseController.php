@@ -53,4 +53,9 @@ class DepenseController extends Controller
             return new Response($json);
         }
     }
+    public function validationState(Request $request, $idD){
+        $depenseManager = new DepenseManager('dev');
+        $stateJSON = $depenseManager->catchValidationState($idD);
+        return new Response($stateJSON);
+    }
 }

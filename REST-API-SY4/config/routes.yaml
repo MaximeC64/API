@@ -24,6 +24,14 @@ listNotefrais:
     path: /utilisateur/{id}/notefrais
     controller: App\Controller\NotefraisController::list
     methods: [GET]
+listNotefraisByDate:
+    path: /utilisateur/{id}/notefrais/tri/date
+    controller: App\Controller\NotefraisController::listByDate
+    methods: [GET]
+listNotefraisByClient:
+    path: /utilisateur/{id}/notefrais/tri/client
+    controller: App\Controller\NotefraisController::listByClient
+    methods: [GET]
 addNotefrais:
     path: /utilisateur/{id}/notefrais
     controller: App\Controller\NotefraisController::add

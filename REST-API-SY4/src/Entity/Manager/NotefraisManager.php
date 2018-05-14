@@ -17,17 +17,41 @@ class NotefraisManager
     private $db;
     public function __construct($mode = 'prod') {
         if($mode == 'dev'){ // permet de choisir si l'on veut inclure ou pas la gestion des erreurs
-            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-//        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+//            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         } else {
-            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
-//        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
+//            $this->db = new PDO('mysql:host=localhost;dbname=expense_gr;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=54.37.71.133:3306;dbname=expense_gr;charset=utf8', 'expense_gr', '123456');
         }
     }
 
     public function listNotefrais($id){
         $listNotefrais = [];
         $sql = 'SELECT * FROM Notefrais WHERE Id_Utilisateur = :id';
+        $req = $this->db->prepare($sql);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        while ($ligne = $req->fetch()){
+            $notefrais = new Notefrais($ligne);
+            $listNotefrais[] = $notefrais;
+        }
+        return json_encode($listNotefrais);
+    }
+    public function listNotefraisByDate($id){
+        $listNotefrais = [];
+        $sql = 'SELECT * FROM Notefrais WHERE Id_Utilisateur = :id ORDER BY `Date_Notefrais` DESC';
+        $req = $this->db->prepare($sql);
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        while ($ligne = $req->fetch()){
+            $notefrais = new Notefrais($ligne);
+            $listNotefrais[] = $notefrais;
+        }
+        return json_encode($listNotefrais);
+    }
+    public function listNotefraisByClient($id){
+        $listNotefrais = [];
+        $sql = 'SELECT Id_Notefrais, Date_Notefrais, DateSoumission_Notefrais, Id_Utilisateur, Notefrais.Id_Client FROM Notefrais, Client WHERE Id_Utilisateur = :id AND Notefrais.Id_Client = Client.Id_Client ORDER BY Client.Nom_Client ASC';
         $req = $this->db->prepare($sql);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();

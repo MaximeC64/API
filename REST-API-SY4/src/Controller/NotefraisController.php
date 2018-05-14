@@ -21,6 +21,16 @@ class NotefraisController extends Controller
         $listNofraisJSON = $notefraisManager->listNotefrais($id);
         return new Response($listNofraisJSON);
     }
+    public function listByDate(Request $request, $id){
+        $notefraisManager = new NotefraisManager('dev');
+        $listNofraisJSON = $notefraisManager->listNotefraisByDate($id);
+        return new Response($listNofraisJSON);
+    }
+    public function listByClient(Request $request, $id){
+        $notefraisManager = new NotefraisManager('dev');
+        $listNofraisJSON = $notefraisManager->listNotefraisByClient($id);
+        return new Response($listNofraisJSON);
+    }
     public function add(Request $request, $id){
         $notefraisManager = new NotefraisManager('dev');
         $notefrais = new Notefrais($_POST);

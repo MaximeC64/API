@@ -57,7 +57,7 @@ class FraisManager
         $req->bindValue(':idD', $idD, PDO::PARAM_INT);
         $req->bindValue(':idN', $idN, PDO::PARAM_INT);
         $res = $req->execute();
-        return json_encode($res);
+        return json_encode($idD);
     }
 
 //    public function update(Frais $frais){
